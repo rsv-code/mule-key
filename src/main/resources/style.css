@@ -1,0 +1,25 @@
+
+.main-box {
+    -fx-background-color: #000000;
+    -fx-padding: 10px;
+    -fx-spacing: 5px;
+}
+
+.title-label {
+    -fx-text-fill: #eeeeee;
+}
+
+.program_title {
+    -fx-font-size: 16pt;
+}
+
+.data-label {
+    -fx-label-padding: 5px;
+    -fx-text-fill: #eeeeee;
+}
+
+.data-grid {
+    -fx-hgap: 10px;
+    -fx-vgap: 5px;
+}
+

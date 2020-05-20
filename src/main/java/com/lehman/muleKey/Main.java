@@ -19,8 +19,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("sample.fxml"));
-        primaryStage.setTitle("Mule-Key - Written by Austin Lehman");
-        primaryStage.setScene(new Scene(root, 850, 200));
+        primaryStage.setTitle("Mule-Key - Copyright 2020 Roseville Code Inc");
+        Scene scene = new Scene(root, 850, 200);
+        scene.getStylesheets().add(getClass().getClassLoader().getResource("style.css").toExternalForm());
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
