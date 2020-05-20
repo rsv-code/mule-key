@@ -1,8 +1,41 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<GridPane fx:controller="com.lehman.muleKey.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-</GridPane>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lehman.muleKey.Controller">
+   <children>
+      <Label text="Encrypt:" />
+      <HBox prefHeight="100.0" prefWidth="1118.0">
+         <children>
+            <Label text="Algorithm: " />
+            <ChoiceBox fx:id="choiceBoxAlgorithm" prefWidth="150.0" />
+            <Label text=" Mode: " />
+            <ChoiceBox fx:id="choiceBoxMode" prefWidth="150.0" />
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label text="Key:" />
+            <TextField fx:id="textFieldKey" prefHeight="26.0" prefWidth="700.0" />
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label text=" Input: " />
+            <TextField fx:id="textFieldInput" prefHeight="26.0" prefWidth="700.0" />
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label text="Output: " />
+            <TextField fx:id="textFieldOutput" editable="false" prefHeight="26.0" prefWidth="700.0" />
+            <Button fx:id="buttonEncrypt" mnemonicParsing="false" text="Encypt" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
