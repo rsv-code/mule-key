@@ -22,6 +22,7 @@
          <children>
             <Label text="Key:" />
             <TextField fx:id="textFieldKey" prefHeight="26.0" prefWidth="700.0" />
+            <Button fx:id="buttonGenerateKey" mnemonicParsing="false" text="Generate" />
          </children>
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0">

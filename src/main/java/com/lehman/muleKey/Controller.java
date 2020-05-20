@@ -9,14 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -29,6 +22,9 @@ public class Controller implements Initializable {
 
     @FXML
     private TextField textFieldKey;
+
+    @FXML
+    private Button buttonGenerateKey;
 
     @FXML
     private TextField textFieldInput;
@@ -49,13 +45,26 @@ public class Controller implements Initializable {
         this.choiceBoxMode.getItems().addAll(Crypto.getModes());
         this.choiceBoxMode.getSelectionModel().select(0);
 
-        // Set button event handler
+        // Set generate button event handler
+        this.buttonGenerateKey.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                generateKey();
+            }
+        });
+
+        // Set encrypt button event handler
         this.buttonEncrypt.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 runEncrypt();
             }
         });
+    }
+
+    public void generateKey() {
+        String algorithm = (String)this.choiceBoxAlgorithm.getSelectionModel().getSelectedItem();
+        this.textFieldKey.setText(Crypto.generateKey(algorithm));
     }
 
     public void runEncrypt() {
