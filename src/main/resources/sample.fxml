@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -12,20 +13,24 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxWidth="1.7976931348623157E308" prefHeight="217.0" prefWidth="946.0" styleClass="main-box" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lehman.muleKey.Controller">
+<VBox maxWidth="1.7976931348623157E308" prefHeight="217.0" prefWidth="520.0" styleClass="main-box" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lehman.muleKey.Controller">
    <children>
       <HBox fillHeight="false">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@RosevilleCodeLogoSmall.png" />
-               </image>
-            </ImageView>
-            <VBox>
+            <Hyperlink fx:id="hyperlinkLogo" styleClass="hyperlink-logo">
+               <graphic>
+                  <ImageView fx:id="imageViewLogo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@RosevilleCodeLogoSmall.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Hyperlink>
+            <VBox styleClass="info-box">
                <children>
                   <Label styleClass="program_title, title-label" text="Mule-Key 1.0" />
+                  <Label styleClass="title-label" text="Written by Austin Lehman" />
                   <Label styleClass="title-label" text="Copyright 2020 Roseville Code Inc" />
-                  <Label styleClass="title-label" text="GNU GENERAL PUBLIC LICENSE Version 3" />
                </children>
             </VBox>
          </children>

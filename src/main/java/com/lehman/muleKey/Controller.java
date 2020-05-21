@@ -1,13 +1,15 @@
 package com.lehman.muleKey;
 
+import com.sun.javafx.application.HostServicesDelegate;
+import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -35,6 +37,12 @@ public class Controller implements Initializable {
     @FXML
     private Button buttonEncrypt;
 
+    @FXML
+    private ImageView imageViewLogo;
+
+    @FXML
+    private Hyperlink hyperlinkLogo;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Set algorithms
@@ -60,6 +68,13 @@ public class Controller implements Initializable {
                 runEncrypt();
             }
         });
+
+        this.hyperlinkLogo.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                openUrl("http://rosevillecode.com");
+            }
+        });
     }
 
     public void generateKey() {
@@ -78,5 +93,10 @@ public class Controller implements Initializable {
             Alert alt = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alt.showAndWait();
         }
+    }
+
+    public void openUrl(String Url) {
+        HostServices services = Main.getServices();
+        services.showDocument(Url);
     }
 }

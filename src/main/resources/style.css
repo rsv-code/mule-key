@@ -1,3 +1,7 @@
+.root {
+    -fx-accent: #cc0000;
+    -fx-focus-color: #cc0000;
+}
 
 .main-box {
     -fx-background-color: #000000;
@@ -13,6 +17,10 @@
     -fx-font-size: 16pt;
 }
 
+.info-box {
+    -fx-padding: 0 0 0 20;
+}
+
 .data-label {
     -fx-label-padding: 5px;
     -fx-text-fill: #eeeeee;
@@ -21,5 +29,10 @@
 .data-grid {
     -fx-hgap: 10px;
     -fx-vgap: 5px;
+}
+
+.hyperlink-logo {
+    -fx-border-color: #cc0000;
+    -fx-border-width: 0;
 }
 

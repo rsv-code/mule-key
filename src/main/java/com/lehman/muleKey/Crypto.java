@@ -44,7 +44,12 @@ public class Crypto {
         IvParameterSpec iv = getIvParam(Algorithm, Key);
         SecretKeySpec skeySpec = new SecretKeySpec(Key.getBytes("UTF-8"), Algorithm);
         Cipher c = Cipher.getInstance(cipherStr);
-        c.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
+
+        if (Mode.equals("ECB")) {
+            c.init(Cipher.ENCRYPT_MODE, skeySpec);
+        } else {
+            c.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
+        }
 
         byte[] encrypted = c.doFinal(Input.getBytes());
         return Base64.getEncoder().encodeToString(encrypted);
