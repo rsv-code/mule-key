@@ -1,7 +1,22 @@
+/*
+ * This file is part of the Mule-Key (https://github.com/rsv-code/mule-key).
+ * Copyright (c) 2020 Roseville Code Inc
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, version 3.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package com.lehman.muleKey;
 
-import com.sun.javafx.application.HostServicesDelegate;
-import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -14,6 +29,10 @@ import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * The main view controller. This app is simple so there's
+ * just this single one for the whole application.
+ */
 public class Controller implements Initializable {
 
     @FXML
@@ -43,6 +62,12 @@ public class Controller implements Initializable {
     @FXML
     private Hyperlink hyperlinkLogo;
 
+    /**
+     * Implementation of the initialize function to
+     * setup the UI.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Set algorithms
@@ -72,16 +97,23 @@ public class Controller implements Initializable {
         this.hyperlinkLogo.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                openUrl("http://rosevillecode.com");
+                Main.openUrl("http://rosevillecode.com");
             }
         });
     }
 
+    /**
+     * Generates a key and sets it in the key text field.
+     */
     public void generateKey() {
         String algorithm = (String)this.choiceBoxAlgorithm.getSelectionModel().getSelectedItem();
         this.textFieldKey.setText(Crypto.generateKey(algorithm));
     }
 
+    /**
+     * Runs the encrypt function. It gets the algorithm, mode, key, and input text
+     * fields and then sets the result in the output text field.
+     */
     public void runEncrypt() {
         String algorithm = (String)this.choiceBoxAlgorithm.getSelectionModel().getSelectedItem();
         String mode = (String)this.choiceBoxMode.getSelectionModel().getSelectedItem();
@@ -93,10 +125,5 @@ public class Controller implements Initializable {
             Alert alt = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alt.showAndWait();
         }
-    }
-
-    public void openUrl(String Url) {
-        HostServices services = Main.getServices();
-        services.showDocument(Url);
     }
 }
