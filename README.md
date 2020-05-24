@@ -9,6 +9,16 @@ for Linux, MacOS, and even Winders. Licensed under the GNU GPL v3, so use away.
 
 ![Mule-Key Screen Shot](img/mule-key-screenshot.png)
 
+## Get It!
+The easy way is to grab the installer for your system.
+
+| Operating System    | Download                                                                                                             |
+|---------------------|----------------------------------------------------------------------------------------------------------------------|
+| Debian/Ubuntu/PopOS | [mule-key_1.0.0-1_amd64.deb](https://github.com/rsv-code/mule-key/releases/download/v1.0/mule-key_1.0.0-1_amd64.deb) |
+| Mac OS              | [mule-key-1.0.0.dmg](https://github.com/rsv-code/mule-key/releases/download/v1.0/mule-key-1.0.0.dmg)                 |
+| Windows             | [mule-key-1.0.0.exe](https://github.com/rsv-code/mule-key/releases/download/v1.0/mule-key-1.0.0.exe)                 |
+
+
 ## Building
 You can build from source with maven.
 
