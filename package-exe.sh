@@ -30,7 +30,7 @@ echo "Running the packager for mule-key."
 echo "Copyright 2020 Roseville Code Inc"
 echo "Licensed under the GNU GPL Version 3"
 echo ""
-echo "If all goes well resulting .deb will be in the target/ directory."
+echo "If all goes well resulting .exe will be in the target/ directory."
 echo ""
 
 if [ -z "$JAVA_HOME" ]
