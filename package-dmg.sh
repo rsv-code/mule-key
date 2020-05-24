@@ -70,7 +70,7 @@ else
     -d target \
     -i target \
     -n "mule-key" \
-    --icon "img/mule-key.png" \
+    --icon "img/mule-key.icns" \
     --app-version "1.0.0" \
     --copyright "Copyright 2020 Roseville Code Inc" \
     --description "Mule-Key is a GUI application that provides Mule key encryption functionality." \
