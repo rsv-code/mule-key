@@ -1,6 +1,6 @@
 ![Mule-Key Logo](img/mule-key-128.png)
 
-# Mule-Key 1.0
+# Mule-Key 1.1
 
 Application providing mule crypto functions. The main purpose of this tool is to 
 assist with property encryption. This can be used instead of the Secure Properties 
@@ -18,6 +18,13 @@ The easy way is to grab the installer for your system.
 | Mac OS              | [mule-key-1.0.0.dmg](https://github.com/rsv-code/mule-key/releases/download/v1.0/mule-key-1.0.0.dmg)                 |
 | Windows             | [mule-key-1.0.0.exe](https://github.com/rsv-code/mule-key/releases/download/v1.0/mule-key-1.0.0.exe)                 |
 
+## Running
+If you installed with one of the prebuilt binaries, then you can just launch 
+the app from the main menu, desktop ... however you normally run an app. 
+Mule-key can save keys and it does to a file called mule-key-config.json. On 
+most system this file is saved to your home directory. The file is saved as 
+pretty-print JSON and you can manually copy it or contents to share key 
+info with others if you like.
 
 ## Building
 You can build from source with maven.
@@ -30,7 +37,7 @@ You can build from source with maven.
 ```
 > mvn clean package
 and then to run
-> java --module-path $PATH_TO_FX --add-modules javafx.controls,javafx.fxml -jar target/mule-key-1.0.jar
+> java --module-path $PATH_TO_FX --add-modules javafx.controls,javafx.fxml -jar target/mule-key-1.1.jar
 Where PATH_TO_FX is the lib directory where you put the JavaFX SDK.
 (example: /opt/javafx/javafx-sdk-14.0.1/lib)
 ```
