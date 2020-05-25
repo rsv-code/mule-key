@@ -57,7 +57,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("sample.fxml"));
         primaryStage.setTitle("Mule-Key - Copyright 2020 Roseville Code Inc");
-        Scene scene = new Scene(root, 520, 200);
+        Scene scene = new Scene(root, 520, 240);
         scene.getStylesheets().add(getClass().getClassLoader().getResource("style.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();

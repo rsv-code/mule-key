@@ -17,36 +17,25 @@
 
 package com.lehman.muleKey;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
 /**
- * Enum Mode defines the available encryption modes.
+ * Data bound class that holds the config file
+ * contents.
  */
-public enum Mode {
-    CBC("CBC"),
-    CFB("CFB"),
-    ECB("ECB"),
-    OFB("OFB");
+public class EncryptionConfigFile {
+    /**
+     * Stores the config records.
+     */
+    private ArrayList<EncryptionConfigRecord> keys = new ArrayList<EncryptionConfigRecord>();
 
-    private String value;
+    public EncryptionConfigFile() { }
 
-    Mode(String Value) {
-        this.value = Value;
+    public ArrayList<EncryptionConfigRecord> getKeys() {
+        return keys;
     }
 
-    String getValue() {
-        return this.value;
-    }
-
-    private static final Map<String, Mode> lookup = new HashMap<>();
-    static {
-        for(Mode mode : Mode.values()) {
-            lookup.put(mode.getValue(), mode);
-        }
-    }
-
-    public static Mode get(String mode) {
-        return lookup.get(mode);
+    public void setKeys(ArrayList<EncryptionConfigRecord> Keys) {
+        this.keys = Keys;
     }
 }

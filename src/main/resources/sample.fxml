@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxWidth="1.7976931348623157E308" prefHeight="217.0" prefWidth="520.0" styleClass="main-box" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lehman.muleKey.Controller">
+<VBox maxWidth="1.7976931348623157E308" prefHeight="246.0" prefWidth="520.0" styleClass="main-box" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lehman.muleKey.Controller">
    <children>
       <HBox fillHeight="false">
          <children>
@@ -28,11 +29,18 @@
             </Hyperlink>
             <VBox styleClass="info-box">
                <children>
-                  <Label styleClass="program_title, title-label" text="Mule-Key 1.0" />
+                  <Label styleClass="program_title, title-label" text="Mule-Key 1.1" />
                   <Label styleClass="title-label" text="Written by Austin Lehman" />
                   <Label styleClass="title-label" text="Copyright 2020 Roseville Code Inc" />
                </children>
             </VBox>
+         </children>
+      </HBox>
+      <HBox fx:id="hboxConfig" styleClass="config-box" VBox.vgrow="ALWAYS">
+         <children>
+            <Label styleClass="data-label" text="Config: " HBox.hgrow="NEVER" />
+            <ComboBox fx:id="comboBoxConfig" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+            <Button fx:id="buttonSave" mnemonicParsing="false" text="Save" HBox.hgrow="NEVER" />
          </children>
       </HBox>
       <HBox prefWidth="900.0">

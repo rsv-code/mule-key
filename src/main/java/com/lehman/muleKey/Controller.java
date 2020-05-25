@@ -17,6 +17,8 @@
 
 package com.lehman.muleKey;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -24,8 +26,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.util.StringConverter;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -34,6 +40,14 @@ import java.util.ResourceBundle;
  * just this single one for the whole application.
  */
 public class Controller implements Initializable {
+    @FXML
+    private HBox hboxConfig;
+
+    @FXML
+    private ComboBox comboBoxConfig;
+
+    @FXML
+    private Button buttonSave;
 
     @FXML
     private ChoiceBox choiceBoxAlgorithm;
@@ -70,6 +84,44 @@ public class Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.comboBoxConfig = new ComboBox<EncryptionConfigRecord>();
+        this.comboBoxConfig.setEditable(true);
+        this.comboBoxConfig.setMaxWidth(Double.MAX_VALUE);
+        this.comboBoxConfig.getItems().addAll(EncryptionConfig.getInstance().getConfigFile().getKeys());
+        this.hboxConfig.getChildren().set(1, this.comboBoxConfig);
+        this.hboxConfig.setHgrow(this.comboBoxConfig, Priority.ALWAYS);
+
+        this.comboBoxConfig.setConverter(new StringConverter<EncryptionConfigRecord>() {
+            @Override
+            public String toString(EncryptionConfigRecord rec) {
+                if (rec != null) {
+                    return rec.getName();
+                }
+                return "";
+            }
+
+            @Override
+            public EncryptionConfigRecord fromString(String string) {
+                return (EncryptionConfigRecord) comboBoxConfig.getSelectionModel().getSelectedItem();
+            }
+        });
+
+        this.comboBoxConfig.valueProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observableValue, Object o, Object t1) {
+                loadConfig();
+            }
+        });
+
+
+        // Save config button
+        this.buttonSave.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                saveConfig();
+            }
+        });
+
         // Set algorithms
         this.choiceBoxAlgorithm.getItems().addAll(Crypto.getAlgorithms());
         this.choiceBoxAlgorithm.getSelectionModel().select(0);
@@ -100,6 +152,84 @@ public class Controller implements Initializable {
                 Main.openUrl("http://rosevillecode.com");
             }
         });
+    }
+
+    /**
+     * Loads the config records from the encryption config and puts them in the
+     * config combo box.
+     */
+    public void loadConfigRecords() {
+        this.comboBoxConfig.getItems().clear();
+        this.comboBoxConfig.getItems().addAll(EncryptionConfig.getInstance().getConfigFile().getKeys());
+    }
+
+    /**
+     * Saves the current config.
+     */
+    public void saveConfig() {
+        Object val = this.comboBoxConfig.getValue();
+        String txtval = this.comboBoxConfig.getEditor().getText();
+
+        EncryptionConfigRecord newConfig;
+        if (val instanceof EncryptionConfigRecord && txtval == null) {
+            newConfig = (EncryptionConfigRecord)val;
+        } else if (!txtval.trim().equals("")) {
+            newConfig = new EncryptionConfigRecord();
+            newConfig.setName(txtval);
+        } else {
+            // Save is clicked on a blank string ...
+            Alert alt = new Alert(Alert.AlertType.ERROR, "You must specify a name in the config field to save the config as.");
+            alt.showAndWait();
+            return;
+        }
+        newConfig.setAlgorithm(Algorithm.get((String)this.choiceBoxAlgorithm.getValue()));
+        newConfig.setMode(Mode.get((String)this.choiceBoxMode.getValue()));
+        newConfig.setKey(this.textFieldKey.getText());
+
+        EncryptionConfigRecord found = null;
+        for (EncryptionConfigRecord rec : EncryptionConfig.getInstance().getConfigFile().getKeys()) {
+            if (rec.getName().equals(newConfig.getName())) {
+                found = rec;
+                break;
+            }
+        }
+
+        if (found != null) {
+            // Update needed
+            found.setAlgorithm(newConfig.getAlgorithm());
+            found.setMode(newConfig.getMode());
+            found.setKey(newConfig.getKey());
+        } else {
+            EncryptionConfig.getInstance().getConfigFile().getKeys().add(newConfig);
+        }
+
+        try {
+            EncryptionConfig.getInstance().saveConfig();
+            if (found == null) {
+                this.comboBoxConfig.getItems().add(newConfig);
+                this.comboBoxConfig.getSelectionModel().select(newConfig);
+            }
+
+            // Alert the user that the record has been saved.
+            Alert alt = new Alert(Alert.AlertType.INFORMATION, "Record '" + newConfig.getName() + "' has been saved.");
+            alt.showAndWait();
+        } catch (IOException e) {
+            Alert alt = new Alert(Alert.AlertType.ERROR, e.getMessage());
+            alt.showAndWait();
+        }
+    }
+
+    /**
+     * This is ran when the comboBoxConfig value is changed from
+     * the selector. It then fires this function.
+     */
+    public void loadConfig() {
+        EncryptionConfigRecord rec = (EncryptionConfigRecord) this.comboBoxConfig.getValue();
+        if (rec != null && rec instanceof  EncryptionConfigRecord) {
+            this.choiceBoxAlgorithm.setValue(rec.getAlgorithm().getValue());
+            this.choiceBoxMode.setValue(rec.getMode().getValue());
+            this.textFieldKey.setText(rec.getKey());
+        }
     }
 
     /**

@@ -71,7 +71,7 @@ else
     -i target \
     -n "mule-key" \
     --icon "img/mule-key.icns" \
-    --app-version "1.0.0" \
+    --app-version "1.1.0" \
     --copyright "Copyright 2020 Roseville Code Inc" \
     --description "Mule-Key is a GUI application that provides Mule key encryption functionality." \
     --vendor "Roseville Code Inc" \
@@ -79,7 +79,7 @@ else
     --module-path $PATH_TO_FX_MODS \
     --add-modules javafx.controls,javafx.fxml \
     --main-class com.lehman.muleKey.Main \
-    --main-jar "mule-key-1.0.jar" \
+    --main-jar "mule-key-1.1.jar" \
     # I don't intend to produce signed dmgs at this time.
     #--mac-bundle-identifier "Mule-Key-1.0" \
     #--mac-bundle-name "Mule-Key" \

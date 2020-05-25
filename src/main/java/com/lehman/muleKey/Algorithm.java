@@ -17,6 +17,9 @@
 
 package com.lehman.muleKey;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Enum Algorithm defines the available encryption algorithms.
  */
@@ -35,5 +38,16 @@ public enum Algorithm {
 
     String getValue() {
         return this.value;
+    }
+
+    private static final Map<String, Algorithm> lookup = new HashMap<>();
+    static {
+        for(Algorithm alg : Algorithm.values()) {
+            lookup.put(alg.getValue(), alg);
+        }
+    }
+
+    public static Algorithm get(String algorithm) {
+        return lookup.get(algorithm);
     }
 }

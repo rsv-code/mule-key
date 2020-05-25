@@ -17,6 +17,8 @@
 
 package com.lehman.muleKey;
 
+import javafx.util.StringConverter;
+
 /**
  * Class holds the config for a specific encryption instance.
  */
@@ -24,7 +26,7 @@ public class EncryptionConfigRecord {
     /**
      * A descriptive unique name given to the encryption config.
      */
-    private String Name = "";
+    private String name = "";
 
     /**
      * The algorithm to use.
@@ -46,12 +48,16 @@ public class EncryptionConfigRecord {
      */
     public EncryptionConfigRecord() { }
 
-    public String getName() {
-        return Name;
+    public EncryptionConfigRecord(String Name) {
+        this.name = Name;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String Name) {
+        name = Name;
     }
 
     public Algorithm getAlgorithm() {

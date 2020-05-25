@@ -53,3 +53,7 @@
     -fx-border-width: 0;
 }
 
+.config-box {
+    -fx-spacing: 5px;
+}
+
