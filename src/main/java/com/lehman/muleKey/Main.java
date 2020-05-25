@@ -24,6 +24,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 
 /**
  * Main entry point extends javafx Application.
@@ -73,7 +75,11 @@ public class Main extends Application {
      * The main entry point that calls FX launch.
      * @param args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        // First, try and load the config.
+        EncryptionConfig.getInstance().loadConfig();
+
+        // Launch the GUI
         launch(args);
     }
 
