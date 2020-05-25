@@ -167,6 +167,8 @@ public class Controller implements Initializable {
      * Saves the current config.
      */
     public void saveConfig() {
+        // Because the combobox is editable it has a value and editor
+        // that has to be checked for value.
         Object val = this.comboBoxConfig.getValue();
         String txtval = this.comboBoxConfig.getEditor().getText();
 
@@ -186,6 +188,7 @@ public class Controller implements Initializable {
         newConfig.setMode(Mode.get((String)this.choiceBoxMode.getValue()));
         newConfig.setKey(this.textFieldKey.getText());
 
+        // Look for existing key record in config file.
         EncryptionConfigRecord found = null;
         for (EncryptionConfigRecord rec : EncryptionConfig.getInstance().getConfigFile().getKeys()) {
             if (rec.getName().equals(newConfig.getName())) {

@@ -37,6 +37,9 @@ public class EncryptionConfig {
      */
     private static EncryptionConfig instance;
 
+    /**
+     * Default constructor exists to block external instantiation.
+     */
     protected EncryptionConfig() { }
 
     /**
@@ -50,6 +53,9 @@ public class EncryptionConfig {
         return instance;
     }
 
+    /**
+     * The config file instance.
+     */
     private EncryptionConfigFile configFile = new EncryptionConfigFile();
 
     /**
