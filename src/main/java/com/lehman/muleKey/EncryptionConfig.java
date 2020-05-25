@@ -64,7 +64,7 @@ public class EncryptionConfig {
      */
     public void loadConfig() {
         try {
-            String cfgFileName = new File(".").getCanonicalPath() + "/" + configFileName;
+            String cfgFileName = System.getProperty("user.home") + "/" + configFileName;
 
             ObjectMapper mapper = new ObjectMapper();
             File file = new File(cfgFileName);
@@ -79,7 +79,7 @@ public class EncryptionConfig {
      * @throws IOException
      */
     public void saveConfig() throws IOException {
-        String cfgFileName = new File(".").getCanonicalPath() + "/" + configFileName;
+        String cfgFileName = System.getProperty("user.home") + "/" + configFileName;
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.writerWithDefaultPrettyPrinter().writeValue(new FileOutputStream(cfgFileName), this.configFile);
