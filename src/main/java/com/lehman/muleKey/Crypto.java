@@ -29,9 +29,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-import java.util.Base64;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Crypto class provides encryption support functions.
@@ -42,14 +40,11 @@ public class Crypto {
      * @return A ObservableList of String objects with the available algorithm names.
      */
     public static ObservableList<String> getAlgorithms() {
-        String[] algorithms = {
-            "AES",
-            "Blowfish",
-            "DES",
-            "DESede",
-            "RC2"
-        };
-        return FXCollections.observableList(Arrays.asList(algorithms));
+        List<String> algorithms = new ArrayList<String>();
+        for (Algorithm alg : Algorithm.values()) {
+            algorithms.add(alg.getValue());
+        }
+        return FXCollections.observableList(algorithms);
     }
 
     /**
@@ -57,13 +52,11 @@ public class Crypto {
      * @return A ObservableList of String objects with the available mode names.
      */
     public static ObservableList<String> getModes() {
-        String[] modes = {
-                "CBC",
-                "CFB",
-                "ECB",
-                "OFB"
-        };
-        return FXCollections.observableList(Arrays.asList(modes));
+        List<String> modes = new ArrayList<String>();
+        for (Mode mode : Mode.values()) {
+            modes.add(mode.getValue());
+        }
+        return FXCollections.observableList(modes);
     }
 
     /**
