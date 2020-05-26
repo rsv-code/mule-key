@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxWidth="1.7976931348623157E308" prefHeight="246.0" prefWidth="520.0" styleClass="main-box" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lehman.muleKey.Controller">
+<VBox maxWidth="1.7976931348623157E308" prefHeight="270.0" prefWidth="520.0" styleClass="main-box" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lehman.muleKey.Controller">
    <children>
       <HBox fillHeight="false">
          <children>
@@ -73,5 +73,6 @@
             <Button fx:id="buttonEncrypt" mnemonicParsing="false" text="Encypt" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          </children>
       </GridPane>
+      <Button fx:id="buttonAddToKeyStore" mnemonicParsing="false" prefHeight="26.0" prefWidth="157.0" text="Add Key to Keystore" />
    </children>
 </VBox>

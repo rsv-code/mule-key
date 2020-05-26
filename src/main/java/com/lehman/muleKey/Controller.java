@@ -31,8 +31,19 @@ import javafx.scene.layout.Priority;
 import javafx.util.StringConverter;
 
 
+import javax.crypto.EncryptedPrivateKeyInfo;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.security.*;
+import java.security.cert.CertificateException;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.RSAKeyGenParameterSpec;
+import java.security.spec.RSAPrivateKeySpec;
 import java.util.ResourceBundle;
 
 /**
@@ -75,6 +86,9 @@ public class Controller implements Initializable {
 
     @FXML
     private Hyperlink hyperlinkLogo;
+
+    @FXML
+    private Button buttonAddToKeyStore;
 
     /**
      * Implementation of the initialize function to
@@ -150,6 +164,25 @@ public class Controller implements Initializable {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 Main.openUrl("http://rosevillecode.com");
+            }
+        });
+
+        this.buttonAddToKeyStore.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                try {
+                    saveInKeyStore();
+                } catch (KeyStoreException e) {
+                    e.printStackTrace();
+                } catch (CertificateException e) {
+                    e.printStackTrace();
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InvalidKeySpecException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -258,5 +291,22 @@ public class Controller implements Initializable {
             Alert alt = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alt.showAndWait();
         }
+    }
+
+    public void saveInKeyStore() throws KeyStoreException, CertificateException, NoSuchAlgorithmException, IOException, InvalidKeySpecException {
+        //Creating the KeyStore object
+        KeyStore keyStore = KeyStore.getInstance("PKCS12");
+        //Loading the KeyStore object
+        char[] password = "password".toCharArray();
+        String path = "emptyStore.keystore";
+        FileInputStream fis = new FileInputStream(path);
+        keyStore.load(fis, password);
+
+        EncryptedPrivateKeyInfo keyInfo = new EncryptedPrivateKeyInfo(this.choiceBoxAlgorithm.getValue().toString(), this.textFieldKey.getText().getBytes());
+        keyStore.setKeyEntry("mule.vault.key", keyInfo.getEncoded(), null);
+
+        FileOutputStream fos = null;
+        fos = new FileOutputStream("emptyStore.keystore");
+        keyStore.store(fos, password);
     }
 }
