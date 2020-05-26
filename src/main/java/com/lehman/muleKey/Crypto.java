@@ -102,10 +102,10 @@ public class Crypto {
 
         switch(Algorithm) {
             case "AES":
-                length = 16;
+                length = 32;
                 break;
             case "Blowfish":
-                length = 8;
+                length = 32;
                 break;
             case "DES":
                 length = DESKeySpec.DES_KEY_LEN;
@@ -114,7 +114,7 @@ public class Crypto {
                 length = DESedeKeySpec.DES_EDE_KEY_LEN;
                 break;
             case "RC2":
-                length = 8;
+                length = 32;
                 break;
         }
         return Base64.getEncoder().encodeToString(getRandomBytes(length)).substring(0, length);
